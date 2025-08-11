@@ -1,8 +1,5 @@
 ﻿# LOTS Task Manager (Practical Interview)
 
-@"
-# LOTS — Lightweight Online Task System
-
 A small, production-sane task manager built for a hackathon.
 
 Monorepo:
@@ -19,10 +16,10 @@ Monorepo:
 
 ---
 
-## Why These Technologies
+## Why I used these Technologies
 
 **Node.js + Express (Server)**
-- Fast to scaffold, minimal abstractions, fits hackathon velocity.
+- Fast to scaffold, minimal abstractions, fits the interviews limited time.
 - Large ecosystem (CORS, Helmet, rate limiting, cookie parsing) to harden quickly.
 
 **Prisma ORM + MySQL**
