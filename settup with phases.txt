@@ -5,7 +5,7 @@ password: Test#2025!
 
 
 
-test users:
+test users terminal run:
 
 curl.exe -i -X POST http://localhost:4000/api/auth/signup -H "Content-Type: application/json" --data '{"email":"max@example.com","password":"Test#2025!","name":"Max"}' -c cookies.txt
 
