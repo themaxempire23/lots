@@ -1,10 +1,11 @@
-import express from 'express';
+﻿import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import { notFound, errorHandler } from './middleware/error.js';
 import healthRouter from './routes/health.js';
+import authRouter from './routes/auth.js';
 
 const app = express();
 
@@ -21,7 +22,6 @@ const allowed = (process.env.CORS_ORIGINS || 'http://localhost:5173')
 
 app.use(cors({
   origin: (origin, cb) => {
-    // Allow non-browser clients like curl/Postman (no Origin) and allowed web origins
     if (!origin || allowed.includes(origin)) return cb(null, true);
     return cb(new Error('Not allowed by CORS'));
   },
@@ -45,6 +45,7 @@ app.use('/api', apiLimiter);
 
 // Routes
 app.use('/api/health', healthRouter);
+app.use('/api/auth', authRouter);
 
 // 404 for /api/*
 app.use('/api', notFound);
