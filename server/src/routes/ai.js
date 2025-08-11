@@ -16,7 +16,7 @@ router.post('/suggest', async (req, res, next) => {
     }
 
     const { title, description } = parsed.data;
-    const model = process.env.OPENAI_MODEL || 'gpt-4o-mini'; // fast & affordable
+    const model = process.env.OPENAI_MODEL || 'gpt-4o-mini'; 
     const controller = new AbortController();
     const to = setTimeout(() => controller.abort(), 10_000);
 
@@ -40,7 +40,7 @@ router.post('/suggest', async (req, res, next) => {
       body: JSON.stringify({
         model,
         temperature: 0.3,
-        response_format: { type: 'json_object' }, // ask for valid JSON
+        response_format: { type: 'json_object' }, 
         input: [
           { role: 'system', content: prompt },
           { role: 'user', content: 'Input: ' + JSON.stringify(userPayload) }
@@ -54,7 +54,7 @@ router.post('/suggest', async (req, res, next) => {
     }
 
     const data = await resp.json();
-    // Responses API convenience field; fallback to content tree if needed
+    
     const content = data?.output_text ??
       (data?.output?.[0]?.content?.[0]?.text ?? '');
 

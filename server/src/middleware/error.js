@@ -3,8 +3,7 @@ export function notFound(req, res, next) {
 }
 
 export function errorHandler(err, req, res, next) {
-  // Basic logging for now; can replace with a logger later
-  // eslint-disable-next-line no-console
+
   console.error(err);
 
   const status = err.status || 500;

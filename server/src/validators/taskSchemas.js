@@ -21,7 +21,7 @@ export const listQuerySchema = z.object({
   page: z.any().transform((v) => Math.max(1, toInt(v, 1))),
   limit: z.any().transform((v) => {
     const val = toInt(v, 10);
-    return Math.max(1, Math.min(100, val)); // cap at 100
+    return Math.max(1, Math.min(100, val)); 
   }),
   q: z.string().trim().max(200).optional().or(z.literal('').transform(() => undefined))
 });

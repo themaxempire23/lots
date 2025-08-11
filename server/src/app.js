@@ -41,9 +41,9 @@ app.use('/api', apiLimiter);
 app.use('/api/health', healthRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/tasks', tasksRouter);
-app.use('/api/ai', aiRouter);              // <-- add this
+app.use('/api/ai', aiRouter);           
 
-// 404 + error
+
 app.use('/api', notFound);
 app.use(errorHandler);
 

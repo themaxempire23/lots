@@ -6,7 +6,7 @@ export function requireAuth(req, res, next) {
 
   try {
     const decoded = verifyAccessToken(token);
-    // decoded.sub set when we sign the token
+    
     req.user = { id: parseInt(decoded.sub, 10) };
     return next();
   } catch (err) {
