@@ -1,6 +1,6 @@
 ﻿# LOTS Task Manager (Practical Interview)
 
-A small, production-sane task manager built for a hackathon.
+A small, production-sane task manager built during a practical interview.
 
 Monorepo:
 - **/server** – Node.js + Express + Prisma + MySQL + JWT (HttpOnly cookie)
