@@ -92,4 +92,4 @@ Base URL: `https://lots-p99v.onrender.com/api`
 
 
   ## Author:
-Max Haikali😉
+Max Haikali👍
