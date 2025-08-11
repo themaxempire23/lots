@@ -8,12 +8,13 @@ import { requireAuth } from '../middleware/auth.js';
 const router = Router();
 const isProd = process.env.NODE_ENV === 'production';
 
+// In dev (localhost) we can be lax; in prod (Vercel  Render) we must be None+Secure
 const cookieOptions = {
   httpOnly: true,
-  secure: isProd,
-  sameSite: 'lax', // For cross-site deployments you'd switch to 'none' + secure: true
+  secure: isProd,                     // must be true on HTTPS (Render)
+  sameSite: isProd ? 'none' : 'lax', // cross-site cookie for Vercel
   path: '/',
-  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+  maxAge: 7 * 24 * 60 * 60 * 1000
 };
 
 function publicUser(u) {
@@ -23,9 +24,8 @@ function publicUser(u) {
 router.post('/signup', async (req, res, next) => {
   try {
     const parsed = signupSchema.safeParse(req.body);
-    if (!parsed.success) {
-      return res.status(400).json({ error: 'Validation failed', details: parsed.error.flatten() });
-    }
+    if (!parsed.success) return res.status(400).json({ error: 'Validation failed', details: parsed.error.flatten() });
+
     const { email, password, name } = parsed.data;
 
     const existing = await prisma.user.findUnique({ where: { email } });
@@ -37,17 +37,14 @@ router.post('/signup', async (req, res, next) => {
     const token = signAccessToken({}, { subject: String(user.id) });
     res.cookie('access_token', token, cookieOptions);
     return res.status(201).json({ user: publicUser(user) });
-  } catch (err) {
-    next(err);
-  }
+  } catch (err) { next(err); }
 });
 
 router.post('/login', async (req, res, next) => {
   try {
     const parsed = loginSchema.safeParse(req.body);
-    if (!parsed.success) {
-      return res.status(400).json({ error: 'Validation failed', details: parsed.error.flatten() });
-    }
+    if (!parsed.success) return res.status(400).json({ error: 'Validation failed', details: parsed.error.flatten() });
+
     const { email, password } = parsed.data;
 
     const user = await prisma.user.findUnique({ where: { email } });
@@ -59,9 +56,7 @@ router.post('/login', async (req, res, next) => {
     const token = signAccessToken({}, { subject: String(user.id) });
     res.cookie('access_token', token, cookieOptions);
     return res.json({ user: publicUser(user) });
-  } catch (err) {
-    next(err);
-  }
+  } catch (err) { next(err); }
 });
 
 router.get('/me', requireAuth, async (req, res, next) => {
@@ -69,13 +64,10 @@ router.get('/me', requireAuth, async (req, res, next) => {
     const user = await prisma.user.findUnique({ where: { id: req.user.id } });
     if (!user) return res.status(401).json({ error: 'Unauthorized' });
     return res.json({ user: publicUser(user) });
-  } catch (err) {
-    next(err);
-  }
+  } catch (err) { next(err); }
 });
 
 router.post('/logout', (req, res) => {
-  // Clear cookie by setting immediate expiry with same options
   res.cookie('access_token', '', { ...cookieOptions, maxAge: 0 });
   return res.json({ ok: true });
 });

@@ -7,16 +7,13 @@ import { notFound, errorHandler } from './middleware/error.js';
 import healthRouter from './routes/health.js';
 import authRouter from './routes/auth.js';
 import tasksRouter from './routes/tasks.js';
+import aiRouter from './routes/ai.js';     // <-- add this
 
 const app = express();
 
-// Trust proxy (needed for securing cookies behind Render/Reverse proxies later)
 app.set('trust proxy', 1);
-
-// Security headers
 app.use(helmet());
 
-// CORS (allow Vite dev + any additional origins in CORS_ORIGINS)
 const allowed = (process.env.CORS_ORIGINS || 'http://localhost:5173')
   .split(',')
   .map(s => s.trim());
@@ -29,13 +26,9 @@ app.use(cors({
   credentials: true
 }));
 
-// Body parsing
 app.use(express.json({ limit: '1mb' }));
-
-// Cookies
 app.use(cookieParser());
 
-// Rate limit on all /api routes
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 100,
@@ -47,12 +40,11 @@ app.use('/api', apiLimiter);
 // Routes
 app.use('/api/health', healthRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/tasks', tasksRouter);   // <-- must be BEFORE notFound
+app.use('/api/tasks', tasksRouter);
+app.use('/api/ai', aiRouter);              // <-- add this
 
-// 404 for /api/*
+// 404 + error
 app.use('/api', notFound);
-
-// Unified error handler (must be last)
 app.use(errorHandler);
 
 export default app;
