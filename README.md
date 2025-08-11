@@ -8,7 +8,7 @@ Monorepo:
 
 ## Live Links
 
-- **Frontend (Vercel):** https://<your-vercel-project>.vercel.app   <!-- Replace with your URL -->
+- **Frontend (Vercel):** https://lots-nu.vercel.app/
 - **Backend (Render):** https://lots-p99v.onrender.com
 - **Health check:** https://lots-p99v.onrender.com/api/health
 
