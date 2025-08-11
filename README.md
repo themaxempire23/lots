@@ -55,7 +55,7 @@ These services let us deploy quickly with zero infra cost, ideal for hackathon t
 - CRUD Tasks: create, list (pagination + search), get by id, update, delete
 - Owner scoping: users only see their own tasks
 - Input validation (Zod), security headers (Helmet), rate limiting, CORS
-- **Optional AI assist (in code):** `/api/ai/suggest` (disabled if no valid OpenAI key). If we had more time, we’d polish the model & prompts.
+- **Optional AI assist (in code):** `/api/ai/suggest` (disabled if no valid OpenAI key). If I had more time, I would have polish the model & prompts, for the ai feature.
 
 ---
 
@@ -89,3 +89,7 @@ Base URL: `https://lots-p99v.onrender.com/api`
 - **Node 22+** (you’re on v22.13.1)
 - **MySQL** local (via MySQL Workbench)  
   Create a DB named `lots_dev` (or use any name and update `DATABASE_URL`).
+
+
+  ## Author:
+Max Haikali😉
