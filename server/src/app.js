@@ -6,10 +6,11 @@ import rateLimit from 'express-rate-limit';
 import { notFound, errorHandler } from './middleware/error.js';
 import healthRouter from './routes/health.js';
 import authRouter from './routes/auth.js';
+import tasksRouter from './routes/tasks.js';
 
 const app = express();
 
-// Trust proxy (needed for secure cookies behind Render/Reverse proxies later)
+// Trust proxy (needed for securing cookies behind Render/Reverse proxies later)
 app.set('trust proxy', 1);
 
 // Security headers
@@ -46,11 +47,12 @@ app.use('/api', apiLimiter);
 // Routes
 app.use('/api/health', healthRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/tasks', tasksRouter);   // <-- must be BEFORE notFound
 
 // 404 for /api/*
 app.use('/api', notFound);
 
-// Unified error handler
+// Unified error handler (must be last)
 app.use(errorHandler);
 
 export default app;
