@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿# LOTS Task Manager (Hackathon)
 
 Monorepo: **/server** (Express + Prisma + MySQL + JWT cookies) and **/client** (Vite + React + MUI).
@@ -18,3 +19,14 @@ Monorepo: **/server** (Express + Prisma + MySQL + JWT cookies) and **/client** (
 - [ ] Phase 6 — AI helper (optional)
 - [ ] Phase 7 — Deployment
 - [ ] Phase 8 — README & polish
+=======
+# lots
+Building a small task managent system
+
+
+Setting up:
+1. cloned repo to my local machine using gitbash terminal and opened it using vscode.
+
+![Uploading image.png…]()
+
+>>>>>>> cd2a7024dcf729fce9cc39c4470acdd6862bafe0
