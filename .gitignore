@@ -1,0 +1,34 @@
+﻿# ---- Node & build artifacts ----
+node_modules/
+server/node_modules/
+client/node_modules/
+dist/
+build/
+coverage/
+.nyc_output/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Env files (root/client/server) ----
+.env
+.env.*
+.env.local
+.env.*.local
+server/.env
+client/.env
+*.env
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+
+# ---- Editor ----
+.vscode/
+.idea/
+
+# ---- Misc providers ----
+.vercel/
+.render/
