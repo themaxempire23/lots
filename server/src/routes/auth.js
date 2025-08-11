@@ -11,8 +11,8 @@ const isProd = process.env.NODE_ENV === 'production';
 // In dev (localhost) we can be lax; in prod (Vercel  Render) we must be None+Secure
 const cookieOptions = {
   httpOnly: true,
-  secure: isProd,                     // must be true on HTTPS (Render)
-  sameSite: isProd ? 'none' : 'lax', // cross-site cookie for Vercel
+  secure: isProd,              // required when SameSite=None
+  sameSite: isProd ? 'none' : 'lax',
   path: '/',
   maxAge: 7 * 24 * 60 * 60 * 1000
 };
