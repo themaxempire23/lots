@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿# LOTS Task Manager (Hackathon)
 
 Monorepo: **/server** (Express + Prisma + MySQL + JWT cookies) and **/client** (Vite + React + MUI).
@@ -29,4 +28,3 @@ Setting up:
 
 ![Uploading image.png…]()
 
->>>>>>> cd2a7024dcf729fce9cc39c4470acdd6862bafe0
