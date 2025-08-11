@@ -1,4 +1,4 @@
-﻿# LOTS Task Manager (Hackathon)
+﻿# LOTS Task Manager (Practical Interview)
 
 Monorepo: **/server** (Express + Prisma + MySQL + JWT cookies) and **/client** (Vite + React + MUI).
 
